@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strong password</title>
+</head>
+<body>
+    <h2>Devoloper Seif Ahmed 👨🏻‍💻 </h2>
+     <button><a href="https://t.me/Seif_Ahmed">Support</a></button>
+    <h1>Generate password 🔐</h1>
+    <div class="container">
+        <label for="length">Select Number ✔️</label>
+        <input type="number" id="length" value="12" min="4" max="30">
+
+        <div class="options">
+            <label><input type="checkbox" id="uppercase" checked>🟢 Capital Letters</label>
+            <label><input type="checkbox" id="lowercase" checked>🟢 Small Letters</label>
+            <label><input type="checkbox" id="numbers" checked>🟢 Numbers</label>
+            <label><input type="checkbox" id="symbols" checked>🟢 Symbols</label>
+        </div>
+
+        <button onclick="generatePassword()">Generate Password 👇</button>
+        <input type="text" id="password" placeholder="Password" readonly>
+    </div>
+    
+    <style>
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+            background-image: url('https://i.pinimg.com/600x315/f4/3c/50/f43c5078e82a5628295917dd1bb35f7d.jpg');
+        }
+
+        
+
+        h1 {
+            color: #f9f9f9;
+        }
+
+        h2 {
+            color: #fff;
+            margin-block-start: -50px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .options {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .options input {
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button a {
+            color: #fff;
+            text-align: center;
+
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #password {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            background-color: #f4f4f9;
+        }
+    
+
+    </style>
+
+    <script>
+        function generatePassword() {
+            const length = document.getElementById("length").value;
+            const useUppercase = document.getElementById("uppercase").checked;
+            const useLowercase = document.getElementById("lowercase").checked;
+            const useNumbers = document.getElementById("numbers").checked;
+            const useSymbols = document.getElementById("symbols").checked;
+
+            const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+            const numberChars = "0123456789";
+            const symbolChars = "!@#$%^&*()";
+
+            let charPool = "";
+
+            if (useUppercase) charPool += uppercaseChars;
+            if (useLowercase) charPool += lowercaseChars;
+            if (useNumbers) charPool += numberChars;
+            if (useSymbols) charPool += symbolChars;
+
+            if (charPool === "") {
+                alert("يرجى اختيار نوع واحد على الأقل من الأحرف!");
+                return;
+            }
+
+            let password = "";
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charPool.length);
+                password += charPool[randomIndex];
+            }
+
+            document.getElementById("password").value = password;
+        }
+    </script>
+</body>
+</html>
